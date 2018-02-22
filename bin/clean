@@ -1,0 +1,7 @@
+#/bin/bash
+
+stage_dir="build/stage"
+
+if [ -d "$stage_dir" ]; then
+    rm -r "$stage_dir"
+fi

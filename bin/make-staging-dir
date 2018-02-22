@@ -1,0 +1,40 @@
+#!/usr/bin/env node
+
+"use strict";
+
+const path = require("path");
+const assert = require("assert");
+const DirectoryConverter = require("es6-module-server/DirectoryConverter.js");
+
+const source_dir = "src";
+const dest_dir = "build/stage";
+const build_for_env = "prod";
+
+const locales = process.argv[2] ? process.argv[2].split(",") : [];
+const environments = process.argv[3] ? process.argv[3].split(",") : [];
+
+
+try {
+    assert(locales.length > 0 && environments.length > 0, "Usage: make-staging-dir <locales> <environments>. Locales and environments are comma-separated.");
+    assert(
+        locales.every(locale => /^[a-zA-Z_-]+$/.test(locale)),
+        "Invalid locale, locales must be like 'en' or 'en-us'"
+    );
+    assert(
+        environments.every(env => /^[a-zA-Z_-]+$/.test(env)),
+        "Invalid environment"
+    );
+} catch (e) {
+    console.log(e.message);
+    process.exit();
+}
+
+const converter = new DirectoryConverter(source_dir, require("./es6-module-options.js"));
+for (let env of environments) {
+    for (let locale of locales) {
+        converter.convertDirectory(`${dest_dir}/${locale}/${env}`, {
+            "locale": locale,
+            "environment": env,
+        });
+    }
+}

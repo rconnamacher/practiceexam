@@ -1,0 +1,104 @@
+#/bin/bash
+
+# Parse arguments
+# -d: Compile with debug flags (--debug and --formatting=PRETTY_PRINT)
+# -t: Use Closure Compiler's new type inference
+# -6: Output native ES6 (--output_language=ECMASCRIPT6_STRICT)
+
+debug=false
+compile=true
+
+# Abort on error
+set -e
+
+output_language="ECMASCRIPT5_STRICT"
+environment="prod"
+app_version=$(node -p -e "require('./package.json').version")
+app_license="Practice Test ${app_version}, (c) 2018 Richard Connamacher. All Rights Reserved."
+
+
+while getopts "cdt6" opt; do
+    case $opt in
+        c)
+            echo "Running Code Checks Only"
+            flags="$flags --checks_only"
+            compile=false
+            ;;
+        d)
+            echo "Using debug flags"
+            flags="$flags --debug --formatting=PRETTY_PRINT"
+            debug=true
+            environment="dev"
+            ;;
+        t)
+            echo "Using New Type Inference"
+            flags="$flags --new_type_inf"
+            ;;
+        6)
+            echo "Outputing ES6"
+            output_language="ECMASCRIPT6_STRICT"
+    esac
+done
+
+# Clean old build dirs
+
+bin/clean
+
+# Run compiler
+
+buildLocale () {
+    locale="$1"
+
+    bin/make-staging-dir "$locale" "$environment"
+
+    output_filename="riatest.${locale}.min.js"
+    srcmap_filename="riatest.${locale}.min.js.map"
+
+    staging_dir="build/stage/${locale}/${environment}"
+
+    command="java -showversion -jar
+    node_modules/google-closure-compiler/compiler.jar \
+            $flags \
+            --module_resolution=browser \
+            --js_module_root='${staging_dir}' \
+            --hide_warnings_for=google-closure-library \
+            --hide_warnings_for="synthetic:" \
+            --hide_warnings_for="localized" \
+            --externs=src/externs/web-platform.js \
+            --js='node_modules/google-closure-library/**.js' \
+            --hide_warnings_for="${staging_dir}/localized/" \
+            --js='${staging_dir}/**.js' \
+            --entry_point=${staging_dir}/main.js \
+            --dependency_mode=STRICT \
+            --language_out=${output_language} \
+            --use_types_for_optimization=false \
+            --rewrite_polyfills=false \
+            --compilation_level=ADVANCED_OPTIMIZATIONS \
+            --assume_function_wrapper \
+            --output_wrapper='/*${app_license}*/ (function(){%output%}).call(this)' \
+    "
+    if [ "$compile" = "true" ]; then
+        command="$command \
+            --create_source_map=docs/js/${srcmap_filename} \
+            --source_map_format=V3 \
+            --js_output_file=docs/js/${output_filename} \
+        "
+    fi
+
+    ## For testing type safety:
+    #        --new_type_inf \
+    #        --jscomp_warning="newCheckTypes" \
+    #        --jscomp_warning="reportUnknownTypes" \
+
+
+    command=`echo "$command" | sed "s:  *: :g"`
+
+    echo "Executing $command"
+    eval $command
+
+    cp css/*.css docs/css/*.css
+    gzip -9 -f --keep docs/js/${output_filename}
+    gzip -9 -f --keep docs/css/style.css
+}
+
+buildLocale en
