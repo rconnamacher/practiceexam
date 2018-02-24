@@ -96,7 +96,7 @@ buildLocale () {
     echo "Executing $command"
     eval $command
 
-    cp css/*.css docs/css/*.css
+    lessc --compress src/style/main.less docs/css/style.css
     gzip -9 -f --keep docs/js/${output_filename}
     gzip -9 -f --keep docs/css/style.css
 }

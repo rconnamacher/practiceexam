@@ -1,0 +1,32 @@
+div.alert {
+    padding: 5px 5px 5px 40px;
+    border: 1px solid;
+    position: relative;
+
+
+    &::before {
+        position: absolute;
+        display: block;
+        left: 5px;
+        width: 30px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 22px;
+        line-height: 22px;
+        top: 5px;
+    }
+
+    &.error {
+        color: #500;
+        background-color: #fee;
+        margin: 1em 0;
+
+        &::before {
+            content: "⚠︎"
+        }
+    }
+
+    &.hidden {
+        display: none;
+    }
+}

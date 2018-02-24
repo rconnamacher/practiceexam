@@ -1,0 +1,32 @@
+div.modal-dialog {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > section {
+        max-width: 500px;
+        border: 1px solid #888;
+        background: #eee;
+        padding: 20px;
+
+        > footer {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        > header {
+            margin-bottom: 20px;
+
+            h3 {
+                margin: 0;
+            }
+        }
+    }
+}

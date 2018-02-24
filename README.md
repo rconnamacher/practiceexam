@@ -10,9 +10,15 @@ Your test bank is saved in local storage, and should persist as long as your bro
 
 http://practicetest.connamacher.com/
 
+### Development version:
+
+    npm install
+    npm start
+
 ## Technology Used
 
- * Standard ECMAScript 6 in development (without a transpiler), using only features natively supported by the browser.
+ * Standard ECMAScript 6 for development (without a transpiler), using only features natively supported by current web browsers.
  * Closure Compiler's conversion to ECMAScript 5 for the release, which includes any necessary polyfills.
- * Closure Compiler's Advanced Compilation and JSDoc-based static type enforcement. The release file is only 6kb compressed (and 5kb compressed when served without the ECMAScript 6 polyfills), and loads virtually instantaneously.
+ * Closure Compiler's Advanced Compilation and JSDoc-based static type enforcement. The release file is only 6kb compressed (and 5kb when served without old-browser support), and loads virtually instantaneously.
  * Vanilla JavaScript only; no frameworks are being used.
+ * Less CSS precompiler for stylesheets

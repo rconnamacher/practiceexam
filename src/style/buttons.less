@@ -1,0 +1,68 @@
+a.button, a.action {
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+}
+
+a.button {
+    border: 1px solid #888;
+    background: #444;
+    color: #eee;
+    padding: 5px 20px;
+    font-size: 16px;
+    line-height: 16px;
+    border-radius: 3px;
+}
+
+a.button:not(.disabled):hover {
+    background: #000;
+    border-color: #000;
+    color: #fff;
+}
+
+
+a.button.cancel-button {
+    color: inherit;
+    background: transparent;
+}
+
+a.button.cancel-button:hover {
+    color: #000;
+    border-color: #000;
+    background: #fff;
+}
+
+a.action {
+    font-size: 16px;
+    line-height: 16px;
+    padding: 5px 10px;
+    border: 1px solid #888;
+    border-radius: 3px;
+
+    color: #333;
+    background: #eee;
+    text-align: center;
+}
+
+a.action[title]::before {
+    display: inline;
+    content: attr(title);
+}
+
+@media screen and (max-width:600px) {
+    a.action[title][data-short-title]::before {
+        content: attr(data-short-title);
+    }
+}
+
+
+a.action:not(.disabled):hover {
+    background: #fff;
+    color: #000;
+    border-color: #aaa;
+}
+
+a.action.disabled, a.button.disabled {
+    cursor: default;
+    opacity: 0.25;
+}

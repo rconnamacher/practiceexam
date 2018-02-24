@@ -1,0 +1,59 @@
+section.take-test {
+    section.question {
+        margin: 40px 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #ccc;
+
+        &:last-of-type {
+            border-bottom: none;
+        }
+    }
+
+    h3 {
+        font-size: 115%;
+    }
+
+    ol {
+        padding-left: 50px;
+    }
+
+    li {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        position: relative;
+        font-size: 16px;
+        line-height: 16px;
+
+        &::before {
+            position: absolute;
+            display: block;
+            left: -45px;
+            top: 0;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        &.incorrect  {
+            color: #a00;
+            font-weight: bold;
+
+            &::before {
+                content: "✘";
+            }
+        }
+
+        &.correct {
+            color: #084;
+            font-weight: bold;
+
+            &::before {
+                content: "✔︎";
+            }
+        }
+    }
+
+
+    .test-results {
+        margin: 0 25px;
+    }
+}

@@ -1,0 +1,64 @@
+table.edit-questions {
+    width: 100%;
+    margin-top: 40px;
+    border-collapse: collapse;
+
+    tr {
+        cursor: pointer;
+
+        &:hover {
+            background: #eee;
+        }
+    }
+
+    thead th {
+        background: #444;
+        color: #fff;
+        padding: 5px 10px;
+        text-align: left;
+    }
+
+    td {
+        padding: 5px 10px;
+    }
+
+}
+
+@media screen and (max-width: 420px) {
+    section.page.edit-test-bank > main {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    td.number, th.number {
+        display: none;
+    }
+
+    table, tr, td, th {
+        display: block;
+        padding: 0;
+        margin: 0;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tr {
+        padding: 5px 0;
+    }
+
+    tr:nth-child(even) {
+        background: #f8f8f8;
+    }
+
+    td {
+        &::before {
+            display: "inline";
+            content: attr(title);
+            font-weight: bold;
+        }
+        &.question {
+            font-weight: bold;
+        }
+    }
+}

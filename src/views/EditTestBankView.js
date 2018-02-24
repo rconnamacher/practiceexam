@@ -7,7 +7,7 @@ import {ExportQuestionsModal} from "./ExportQuestionsModal.js";
 
 export class EditTestBankView extends View {
     constructor(model) {
-        super("section", "page edit-test-bank");
+        super("section", "page edit-test-bank responsive-toolbar");
         this.model = model;
         this.numQuestions = 0;
         this.title = "Edit Questions";
@@ -18,20 +18,19 @@ export class EditTestBankView extends View {
             <header class="toolbar">
                 <h2>All Questions</h2>
                 <div class="actions">
-                    <a class="action add-action" href="#edit/new">New Question</a>
-                    <a class="action save-action disabled" download="Questions.json">Save Backup</a>
-                    <a class="action load-action">Import Backup</a>
-                    <a class="action" href="#">Done</a>
+                    <a class="action add-action" href="#edit/new" title="New Question" data-short-title="New"></a>
+                    <a class="action save-action disabled" download="Questions.json" title="Save Backup" data-short-title="Save"></a>
+                    <a class="action load-action" title="Import Backup!" data-short-title="Import"></a>
+                    <a class="action" href="#" title="Done"></a>
                 </div>
             </header>
             <main>
                 <table class="edit-questions">
                     <thead>
-                        <th></th>
+                        <th class="number"></th>
                         <th class="question">Question</th>
                         <th class="answer">Correct Answer</th>
                         <th class="incorrect-answers">Incorrect Answers</th>
-                        <th></th>
                     </thead>
                     <tbody></tbody>
                 </table>
@@ -110,15 +109,18 @@ export class EditTestBankQuestionRow extends View {
         return `
             <th class="number">${indexPlusOne}</th>
             <td class="question"></td>
-            <td class="answer"></td>
-            <td class="incorrect-answers"></td>
-            <td class="edit"><a class="button" href="#edit/${indexPlusOne}">Edit</a></td>
+            <td class="answer" title="Answer: "></td>
+            <td class="incorrect-answers" title="Incorrect Answers: "></td>
         `;
     }
 
     didRefresh() {
         const model = this.model;
         this.removeObservers();
+
+        this.domElement.addEventListener("click", () => {
+            location.hash = `#edit/${this.index+1}`;
+        })
 
         const questionCell = this.querySelector("td.question");
         const answerCell = this.querySelector("td.answer");

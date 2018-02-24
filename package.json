@@ -1,12 +1,13 @@
 {
     "name": "practicetest",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "private": true,
     "devDependencies": {
         "google-closure-compiler": "^20180204.0.0",
         "google-closure-library": "^20180204.0.0",
         "express": "^4",
-        "es6-module-server": "https://github.com/rconnamacher/es6-module-server.git"
+        "es6-module-server": "https://github.com/rconnamacher/es6-module-server.git",
+        "less": "^3.0.1"
     },
     "scripts": {
         "start": "node bin/dev-server.js",
