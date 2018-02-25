@@ -2,6 +2,7 @@
 import {Question} from "../models/Question.js";
 import {View} from "./View.js";
 import {unique, lastUnique} from "../util/number.js";
+import {edittest} from "localized/edittest.js";
 
 function _truncateString(string, maxLength) {
     if (string.length > maxLength) {
@@ -16,7 +17,7 @@ export class EditQuestionView extends View {
 
         this.model = model;
 
-        this.title = "Edit Question: " + _truncateString(model.question, 20);
+        this.title = edittest.edit_question_title(_truncateString(model.question, 20));
         this.numIncorrectAnswers = 0;
 
         /** @type {Element} */
@@ -29,19 +30,19 @@ export class EditQuestionView extends View {
     render() {
         return `
             <header>
-                <h2>Edit Question</h2>
+                <h2>${edittest.edit_question_header}</h2>
             </header>
             <main>
                 <div class="field textarea question">
-                    <label for="question-${unique()}">Question:</label>
+                    <label for="question-${unique()}">${edittest.question_header_inline}</label>
                     <textarea id="question-${lastUnique()}"></textarea>
                 </div>
                 <div class="field text correct-answer">
-                    <label for="answer-${unique()}">Correct Answer:</label>
+                    <label for="answer-${unique()}">${edittest.answer_header_inline}</label>
                     <input id="answer-${lastUnique()}" type="text">
                 </div>
                 <div class="incorrect-answers"></div>
-                <div class="actions"><a class="button save">Done</a></div>
+                <div class="actions"><a class="button save">${edittest.done_button}</a></div>
             </main>
         `;
     }
@@ -97,7 +98,7 @@ export class EditQuestionView extends View {
         const field = document.createElement("div");
         field.className = "field text incorrect-answer";
         field.innerHTML = `
-            <label for="answer-${unique()}">Incorrect Answer:</label>
+            <label for="answer-${unique()}">${edittest.incorrect_one_header_inline}</label>
             <input id="answer-${lastUnique()}" type="text">
         `
 

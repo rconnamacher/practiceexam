@@ -1,5 +1,6 @@
 import {ModalView} from "./ModalView.js";
 import {TestBank} from "../models/TestBank.js";
+import {loadsave} from "localized/loadsave.js";
 
 export class ImportQuestionsModal extends ModalView {
     constructor(/** !TestBank */ model) {
@@ -11,16 +12,16 @@ export class ImportQuestionsModal extends ModalView {
     render() {
         return super.renderModal(`
             <header>
-                <h3>Select file to import:</h3>
+                <h3>${loadsave.load_title}</h3>
             </header>
             <main>
                 <div><input type="file" name="import" accept=".json"></div>
-                <p><em>This will replace all loaded questions with the one from the backup file.</em></p>
+                <p><em>${loadsave.load_warning}</em></p>
                 <div class="alert error hidden"></div>
             </main>
             <footer>
-                <a class="button cancel-button">Cancel</a>
-                <a class="button load-button disabled">Import</a>
+                <a class="button cancel-button">${loadsave.button_cancel}</a>
+                <a class="button load-button disabled">${loadsave.button_import}</a>
             </footer>
         `);
     }
@@ -66,12 +67,12 @@ export class ImportQuestionsModal extends ModalView {
                         loadButton.classList.remove("disabled");
                     }
                 } catch (e) {
-                    errorAlert.textContent = "Couldn't read file " + file.name;
+                    errorAlert.textContent = loadsave.parse_error(file.name);
                     errorAlert.classList.remove("hidden");
                 }
             }
             reader.onerror = event => {
-                errorAlert.textContent = "An error happened loading the file";
+                errorAlert.textContent = loadsave.load_error;
                 errorAlert.classList.remove("hidden");
             }
             reader.readAsText(file);

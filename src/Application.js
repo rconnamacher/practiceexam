@@ -8,6 +8,7 @@ import {TestBank} from "./models/TestBank.js";
 import {Question} from "./models/Question.js";
 import {View} from "./views/View.js";
 import {shuffle} from "./util/random.js";
+import {defaultSave} from "localized/defaultSave.js";
 
 export class Application extends View {
     constructor() {
@@ -96,7 +97,7 @@ export class Application extends View {
         }
 
         const model = new TestBank();
-        const saveData = localStorage.getItem("questionStore");
+        const saveData = localStorage.getItem("questionStore") || JSON.stringify(defaultSave);
         if (saveData) {
             try {
                 model.load(JSON.parse(saveData));

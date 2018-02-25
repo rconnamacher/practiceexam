@@ -5,32 +5,35 @@ import {EditQuestionView} from "./EditQuestionView.js";
 import {ImportQuestionsModal} from "./ImportQuestionsModal.js";
 import {ExportQuestionsModal} from "./ExportQuestionsModal.js";
 
+import {edittest} from "localized/edittest.js";
+
+
 export class EditTestBankView extends View {
     constructor(model) {
         super("section", "page edit-test-bank responsive-toolbar");
         this.model = model;
         this.numQuestions = 0;
-        this.title = "Edit Questions";
+        this.title = edittest.title;
     }
 
     render() {
         return `
             <header class="toolbar">
-                <h2>All Questions</h2>
+                <h2>${edittest.title}</h2>
                 <div class="actions">
-                    <a class="action add-action" href="#edit/new" title="New Question" data-short-title="New"></a>
-                    <a class="action save-action disabled" download="Questions.json" title="Save Backup" data-short-title="Save"></a>
-                    <a class="action load-action" title="Import Backup!" data-short-title="Import"></a>
-                    <a class="action" href="#" title="Done"></a>
+                    <a class="action add-action" href="#edit/new" title="${edittest.new_button}" data-short-title="${edittest.new_button_short}"></a>
+                    <a class="action save-action disabled" download="Questions.json" title="${edittest.save_button}" data-short-title="${edittest.save_button_short}"></a>
+                    <a class="action load-action" title="${edittest.load_button}" data-short-title="${edittest.load_button_short}"></a>
+                    <a class="action" href="#" title="${edittest.done_button}"></a>
                 </div>
             </header>
             <main>
                 <table class="edit-questions">
                     <thead>
                         <th class="number"></th>
-                        <th class="question">Question</th>
-                        <th class="answer">Correct Answer</th>
-                        <th class="incorrect-answers">Incorrect Answers</th>
+                        <th class="question">${edittest.question_header}</th>
+                        <th class="answer">${edittest.answer_header}</th>
+                        <th class="incorrect-answers">${edittest.incorrect_header}</th>
                     </thead>
                     <tbody></tbody>
                 </table>
@@ -109,8 +112,8 @@ export class EditTestBankQuestionRow extends View {
         return `
             <th class="number">${indexPlusOne}</th>
             <td class="question"></td>
-            <td class="answer" title="Answer: "></td>
-            <td class="incorrect-answers" title="Incorrect Answers: "></td>
+            <td class="answer" title="${edittest.answer_header_inline}"></td>
+            <td class="incorrect-answers" title="${edittest.incorrect_header_inline}"></td>
         `;
     }
 

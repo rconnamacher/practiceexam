@@ -101,4 +101,4 @@ buildLocale () {
     gzip -9 -f --keep docs/css/style.css
 }
 
-buildLocale en
+buildLocale en-us

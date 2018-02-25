@@ -7,7 +7,7 @@ module.exports = {
         "locale": {
             type: "query",
             name: "lang",
-            default: "en"
+            default: "en-us"
         },
         "environment": {
             type: "query",

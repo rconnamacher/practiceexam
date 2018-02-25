@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "baseUrl": "src",
+        "paths": {
+            "localized/*": ["./localized/en-us/*"],
+            "environment": ["./env/config.dev.js"]
+        }
+    }
+}

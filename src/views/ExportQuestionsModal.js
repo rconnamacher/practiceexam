@@ -1,5 +1,6 @@
 import {ModalView} from "./ModalView.js";
 import {TestBank} from "../models/TestBank.js";
+import {loadsave} from "localized/loadsave.js";
 
 export class ExportQuestionsModal extends ModalView {
     constructor(/** !TestBank */ model) {
@@ -10,14 +11,14 @@ export class ExportQuestionsModal extends ModalView {
     render() {
         return super.renderModal(`
             <header>
-                <h3>Export Questions</h3>
+                <h3>${loadsave.save_title}</h3>
             </header>
             <main>
-                <div><label for="file_name_input">File Name:</label><input type="text" id="file_name_input" value="Questions.json"></div>
+                <div><label for="file_name_input">${loadsave.filename}</label><input type="text" id="file_name_input" value="Questions.json"></div>
             </main>
             <footer>
-                <a class="button cancel-button">Cancel</a>
-                <a class="button save-button disabled">Save</a>
+                <a class="button cancel-button">${loadsave.button_cancel}</a>
+                <a class="button save-button disabled">${loadsave.button_save}</a>
             </footer>
         `);
     }

@@ -1,6 +1,8 @@
 import {View} from "./View.js";
 import {unique, lastUnique} from "../util/number.js";
 import {shuffle} from "../util/random.js";
+import {exam} from "localized/exam.js";
+import {text} from "../util/html.js";
 
 export class TakeTestView extends View {
     constructor(questions) {
@@ -12,10 +14,10 @@ export class TakeTestView extends View {
 
     render() {
         return `
-            <header><h2>Sample Test: ${this.questions.length} Questions</h2></header>
+            <header><h2>${exam.title(this.questions.length)}</h2></header>
             <main class="test-questions"></main>
             <footer>
-                <a class="button button-grade-test">Grade Test</a>
+                <a class="button button-grade-test">${exam.grade_test_button}</a>
                 <span class="test-results"></span>
             </footer>
         `
@@ -39,10 +41,16 @@ export class TakeTestView extends View {
         for (let view of this.questionViews) {
             numCorrect += view.grade() ? 1 : 0;
         }
-        this.querySelector(".test-results").textContent = `${numCorrect} correct out of ${numQuestions} (${Math.round(numCorrect * 100 / numQuestions)}%)`;
+        const percentCorrect = Math.round(numCorrect * 100 / numQuestions);
+        this.querySelector(".test-results").textContent = exam.test_results(numCorrect, numQuestions, percentCorrect);
     }
 }
 
+function _escape(string) {
+    var container = document.createElement('span');
+    container.textContent = string;
+    return container.innerHTML;
+}
 
 export class TakeTestQuestionView extends View {
     constructor(question, index) {
@@ -67,8 +75,8 @@ export class TakeTestQuestionView extends View {
                     answerId = `${questionId}-answer-${++answerIndex}`,
                     `
                         <li>
-                            <input type="radio" name="${questionId}" value="${answer}" id="${answerId}"
-                            ><label for="${answerId}">${answer}</label>
+                            <input type="radio" name="${questionId}" value="${text(answer)}" id="${answerId}"
+                            ><label for="${answerId}">${text(answer)}</label>
                         </li>
                     `
                 )).join("")}

@@ -15,6 +15,8 @@ http://practicetest.connamacher.com/
     npm install
     npm start
 
+If you're using FireFox in development, you need to enable `dom.moduleScripts.enabled` in about:config. _All other current browsers support it by default._
+
 ## Technology Used
 
  * Standard ECMAScript 6 for development (without a transpiler), using only features natively supported by current web browsers.
@@ -22,3 +24,4 @@ http://practicetest.connamacher.com/
  * Closure Compiler's Advanced Compilation and JSDoc-based static type enforcement. The release file is only 6kb compressed (and 5kb when served without old-browser support), and loads virtually instantaneously.
  * Vanilla JavaScript only; no frameworks are being used.
  * Less CSS precompiler for stylesheets
+ * [ES6 Module Server](https://github.com/rconnamacher/es6-module-server) for localization support
