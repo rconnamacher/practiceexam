@@ -1,6 +1,6 @@
 {
-    "name": "practicetest",
-    "version": "0.0.2",
+    "name": "practiceexam",
+    "version": "0.0.3",
     "private": true,
     "devDependencies": {
         "google-closure-compiler": "^20180204.0.0",

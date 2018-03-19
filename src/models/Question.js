@@ -12,6 +12,7 @@ export class Question extends Model {
         /** @type {!string} */          this.question;
         /** @type {!string} */          this.answer;
         /** @type {!Array.<!string>} */ this.incorrectAnswers;
+        /** @type {!string} */          this.notes;
     }
 }
 
@@ -20,5 +21,6 @@ properties(Question,
         question:           ["question",            field("string")],
         answer:             ["answer",              field("string")],
         incorrectAnswers:   ["incorrectAnswers",    collection("string")],
+        notes:              ["notes",               field("string")],
     }
 );

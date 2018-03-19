@@ -16,6 +16,8 @@ edittest.answer_header = "Answer";
 edittest.answer_header_inline = "Answer: ";
 edittest.incorrect_header = "Incorrect Answers";
 edittest.incorrect_header_inline = "Incorrect Answers: ";
+edittest.notes_header_inline = "Study Notes: ";
+edittest.notes_header = "Study Notes";
 
 edittest.incorrect_one_header_inline = "Incorrect Answer: ";
 edittest.edit_question_header = "Edit Question";

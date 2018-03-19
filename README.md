@@ -21,7 +21,7 @@ If you're using FireFox in development, you need to enable `dom.moduleScripts.en
 
  * Standard ECMAScript 6 for development (without a transpiler), using only features natively supported by current web browsers.
  * Closure Compiler's conversion to ECMAScript 5 for the release, which includes any necessary polyfills.
- * Closure Compiler's Advanced Compilation and JSDoc-based static type enforcement. The release file is only 6kb compressed (and 5kb when served without old-browser support), and loads virtually instantaneously.
+ * Closure Compiler's Advanced Compilation and JSDoc-based static type enforcement. The release file is only 6kb compressed (and 5kb when served without polyfills for older browsers), and loads instantaneously.
  * Vanilla JavaScript only; no frameworks are being used.
  * Less CSS precompiler for stylesheets
  * [ES6 Module Server](https://github.com/rconnamacher/es6-module-server) for localization support

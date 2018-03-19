@@ -34,6 +34,7 @@ export class EditTestBankView extends View {
                         <th class="question">${edittest.question_header}</th>
                         <th class="answer">${edittest.answer_header}</th>
                         <th class="incorrect-answers">${edittest.incorrect_header}</th>
+                        <th class="notes">${edittest.notes_header}</th>
                     </thead>
                     <tbody></tbody>
                 </table>
@@ -114,6 +115,7 @@ export class EditTestBankQuestionRow extends View {
             <td class="question"></td>
             <td class="answer" title="${edittest.answer_header_inline}"></td>
             <td class="incorrect-answers" title="${edittest.incorrect_header_inline}"></td>
+            <td class="notes" title="${edittest.notes_header_inline}"></td>
         `;
     }
 
@@ -128,6 +130,7 @@ export class EditTestBankQuestionRow extends View {
         const questionCell = this.querySelector("td.question");
         const answerCell = this.querySelector("td.answer");
         const incorrectAnswersCell = this.querySelector("td.incorrect-answers");
+        const notesCell = this.querySelector("td.notes");
 
         const updateQuestion = value => {
             questionCell.textContent = value;
@@ -135,6 +138,9 @@ export class EditTestBankQuestionRow extends View {
         const updateAnswer = value => {
             answerCell.textContent = value;
         };
+        const updateNotes = value => {
+            notesCell.textContent = value;
+        }
         const updateIncorrect = value => {
             incorrectAnswersCell.innerHTML = "";
             for (let i = 0, l = value.length; i < l; i++) {
@@ -151,10 +157,12 @@ export class EditTestBankQuestionRow extends View {
         updateQuestion(model.question);
         updateAnswer(model.answer);
         updateIncorrect(model.incorrectAnswers);
+        updateNotes(model.notes);
 
         model.observe("question", this, updateQuestion);
         model.observe("answer", this, updateAnswer);
         model.observe("incorrectAnswers", this, updateIncorrect);
+        model.observe("notes", this, updateNotes);
     }
 
     didRemove() {

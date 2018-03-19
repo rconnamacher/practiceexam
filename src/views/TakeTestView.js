@@ -81,19 +81,23 @@ export class TakeTestQuestionView extends View {
                     `
                 )).join("")}
             </ol>
+            <div class="notes" style="display: none">${text(question.notes)}</div>
         `;
     }
 
     grade() {
+        const model = this.model;
+
         for (let row of this.querySelectorAll("li")) {
             row.classList.remove("incorrect", "correct");
         }
 
         const selectedRadio = this.querySelector("input:checked");
-        const isCorrect = selectedRadio && (selectedRadio.value === this.model.answer);
+        const isCorrect = selectedRadio && (selectedRadio.value === model.answer);
         if (selectedRadio) {
             selectedRadio.parentNode.classList.add(isCorrect ? "correct" : "incorrect");
         }
+        this.querySelector(".notes").style.display = isCorrect ? "none" : "block";
         return isCorrect;
     }
 }

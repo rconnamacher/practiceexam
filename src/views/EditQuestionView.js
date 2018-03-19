@@ -42,8 +42,12 @@ export class EditQuestionView extends View {
                     <input id="answer-${lastUnique()}" type="text">
                 </div>
                 <div class="incorrect-answers"></div>
+                <div class="field textarea notes">
+                    <label for="notes-${unique()}">${edittest.notes_header_inline}</label>
+                    <textarea id="notes-${lastUnique()}"></textarea>
+                </div>
                 <div class="actions"><a class="button save">${edittest.done_button}</a></div>
-            </main>
+        </main>
         `;
     }
 
@@ -52,6 +56,7 @@ export class EditQuestionView extends View {
         const questionInput = this.querySelector(".question textarea");
         const answerInput = this.querySelector(".correct-answer input");
         const saveButton = this.querySelector(".button.save");
+        const notesInput = this.querySelector(".notes textarea");
 
         // Clean up model (if needed)
         model.incorrectAnswers = model.incorrectAnswers.filter(Boolean);
@@ -60,12 +65,16 @@ export class EditQuestionView extends View {
 
         questionInput.value = model.question || "";
         answerInput.value = model.answer || "";
+        notesInput.value = model.notes || "";
 
         questionInput.addEventListener("input", () => {
             model.question = questionInput.value;
         });
         answerInput.addEventListener("input", () => {
             model.answer = answerInput.value;
+        });
+        notesInput.addEventListener("input", () => {
+            model.notes = notesInput.value;
         });
         saveButton.addEventListener("click", () => {
             if (this.onsave) {
