@@ -10,7 +10,7 @@ export class TestBank extends Model {
     constructor(data) {
         super(data);
 
-        /** @type {!Array.<!Question>} */          this.questions;
+        /** @type {!Array<!Question>} */          this.questions;
     }
 }
 

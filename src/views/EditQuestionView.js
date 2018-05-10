@@ -6,7 +6,7 @@ import {edittest} from "localized/edittest.js";
 
 function _truncateString(string, maxLength) {
     if (string.length > maxLength) {
-        string = string.substr(maxLength-3 + "…");
+        string = string.substr(maxLength-3) + "…";
     }
     return string;
 }
@@ -15,6 +15,7 @@ export class EditQuestionView extends View {
     constructor(/** !Question */ model) {
         super("section", "page edit-question");
 
+        /** @type {!Question} */
         this.model = model;
 
         this.title = edittest.edit_question_title(_truncateString(model.question, 20));
@@ -53,10 +54,10 @@ export class EditQuestionView extends View {
 
     didRefresh() {
         const model = this.model;
-        const questionInput = this.querySelector(".question textarea");
-        const answerInput = this.querySelector(".correct-answer input");
-        const saveButton = this.querySelector(".button.save");
-        const notesInput = this.querySelector(".notes textarea");
+        const questionInput = this.requireSelector(".question textarea");
+        const answerInput = this.requireSelector(".correct-answer input");
+        const saveButton = this.requireSelector(".button.save");
+        const notesInput = this.requireSelector(".notes textarea");
 
         // Clean up model (if needed)
         model.incorrectAnswers = model.incorrectAnswers.filter(Boolean);

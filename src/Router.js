@@ -3,6 +3,8 @@
 export class Router {
     constructor(routeConfigs) {
         this.routes = routeConfigs;
+
+        /** @type {function()} */
         this._onhashchange = () => {
             this.displayPath(location.hash.substr(1));
         }

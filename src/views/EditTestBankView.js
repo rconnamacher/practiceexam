@@ -4,15 +4,21 @@ import {unique, lastUnique} from "../util/number.js";
 import {EditQuestionView} from "./EditQuestionView.js";
 import {ImportQuestionsModal} from "./ImportQuestionsModal.js";
 import {ExportQuestionsModal} from "./ExportQuestionsModal.js";
-
+import {TestBank} from "../models/TestBank.js";
 import {edittest} from "localized/edittest.js";
 
 
 export class EditTestBankView extends View {
     constructor(model) {
         super("section", "page edit-test-bank responsive-toolbar");
+
+        /** @type {!TestBank} */
         this.model = model;
+
+        /** @type {!number} */
         this.numQuestions = 0;
+
+        /** @type {!string} */
         this.title = edittest.title;
     }
 
@@ -46,10 +52,10 @@ export class EditTestBankView extends View {
         this.removeObservers();
         this.numQuestions = 0;
 
-        const addButton = this.querySelector(".actions a.add-action");
-        const questionsTable = this.querySelector("table.edit-questions > tbody");
-        const saveButton = this.querySelector(".actions a.save-action");
-        const loadButton = this.querySelector(".actions a.load-action");
+        const addButton = this.requireSelector(".actions a.add-action");
+        const questionsTable = this.requireSelector("table.edit-questions > tbody");
+        const saveButton = this.requireSelector(".actions a.save-action");
+        const loadButton = this.requireSelector(".actions a.load-action");
         const model = this.model;
 
         for (let questionModel of model.questions) {
@@ -127,10 +133,10 @@ export class EditTestBankQuestionRow extends View {
             location.hash = `#edit/${this.index+1}`;
         })
 
-        const questionCell = this.querySelector("td.question");
-        const answerCell = this.querySelector("td.answer");
-        const incorrectAnswersCell = this.querySelector("td.incorrect-answers");
-        const notesCell = this.querySelector("td.notes");
+        const questionCell = this.requireSelector("td.question");
+        const answerCell = this.requireSelector("td.answer");
+        const incorrectAnswersCell = this.requireSelector("td.incorrect-answers");
+        const notesCell = this.requireSelector("td.notes");
 
         const updateQuestion = value => {
             questionCell.textContent = value;

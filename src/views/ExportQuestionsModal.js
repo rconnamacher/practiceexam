@@ -24,9 +24,9 @@ export class ExportQuestionsModal extends ModalView {
     }
 
     didRefresh() {
-        const cancelButton = this.querySelector("a.button.cancel-button");
-        const fileNameInput = this.querySelector("input#file_name_input");
-        const saveButton = this.querySelector("a.button.save-button");
+        const cancelButton = this.requireSelector("a.button.cancel-button");
+        const fileNameInput = this.requireSelector("input#file_name_input");
+        const saveButton = this.requireSelector("a.button.save-button");
 
         cancelButton.addEventListener("click", this.close.bind(this));
 

@@ -1,6 +1,6 @@
 {
     "name": "practiceexam",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "private": true,
     "devDependencies": {
         "es6-module-server": "git+https://github.com/rconnamacher/es6-module-server.git",
@@ -15,6 +15,8 @@
         "build": "bin/build",
         "build:debug": "bin/build -d",
         "checks": "bin/build -c",
+        "build:es": "bin/build -e",
+        "build:es:debug": "bin/build -e -d",
         "build:es6": "bin/build -6",
         "build:es6:debug": "bin/build -6 -d"
     }

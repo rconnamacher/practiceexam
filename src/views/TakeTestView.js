@@ -25,14 +25,14 @@ export class TakeTestView extends View {
 
     didRefresh() {
         this.questionViews = [];
-        const questionsBlock = this.querySelector("main.test-questions");
+        const questionsBlock = this.requireSelector("main.test-questions");
         let index = 0;
         for (let question of this.questions) {
             const questionView = new TakeTestQuestionView(question, index++);
             this.displaySubview(questionView, questionsBlock);
             this.questionViews.push(questionView);
         }
-        this.querySelector("a.button.button-grade-test").addEventListener("click", this.gradeTest.bind(this));
+        this.requireSelector("a.button.button-grade-test").addEventListener("click", this.gradeTest.bind(this));
     }
 
     gradeTest() {
@@ -42,7 +42,7 @@ export class TakeTestView extends View {
             numCorrect += view.grade() ? 1 : 0;
         }
         const percentCorrect = Math.round(numCorrect * 100 / numQuestions);
-        this.querySelector(".test-results").textContent = exam.test_results(numCorrect, numQuestions, percentCorrect);
+        this.requireSelector(".test-results").textContent = exam.test_results(numCorrect, numQuestions, percentCorrect);
     }
 }
 
@@ -92,12 +92,12 @@ export class TakeTestQuestionView extends View {
             row.classList.remove("incorrect", "correct");
         }
 
-        const selectedRadio = this.querySelector("input:checked");
+        const selectedRadio = this.requireSelector("input:checked");
         const isCorrect = selectedRadio && (selectedRadio.value === model.answer);
         if (selectedRadio) {
-            selectedRadio.parentNode.classList.add(isCorrect ? "correct" : "incorrect");
+            selectedRadio.parentElement.classList.add(isCorrect ? "correct" : "incorrect");
         }
-        this.querySelector(".notes").style.display = isCorrect ? "none" : "block";
+        this.requireSelector(".notes").style.display = isCorrect ? "none" : "block";
         return isCorrect;
     }
 }

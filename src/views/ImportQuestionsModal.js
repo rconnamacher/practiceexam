@@ -27,9 +27,9 @@ export class ImportQuestionsModal extends ModalView {
     }
 
     didRefresh() {
-        const cancelButton = this.querySelector("a.button.cancel-button");
-        const fileInput = this.querySelector("input[type=file]");
-        const loadButton = this.querySelector("a.button.load-button");
+        const cancelButton = this.requireSelector("a.button.cancel-button");
+        const fileInput = this.requireSelector("input[type=file]");
+        const loadButton = this.requireSelector("a.button.load-button");
 
         cancelButton.addEventListener("click", this.close.bind(this));
         fileInput.addEventListener("change", this.fileChanged.bind(this), false);
@@ -47,9 +47,9 @@ export class ImportQuestionsModal extends ModalView {
         event.stopPropagation();
 
         this.importModel = null;
-        const file = event.target.files[0];
-        const errorAlert = this.querySelector("div.alert.error");
-        const loadButton = this.querySelector("a.button.load-button");
+        const file = /** @type {!FileList} */ (event.target.files)[0];
+        const errorAlert = this.requireSelector("div.alert.error");
+        const loadButton = this.requireSelector("a.button.load-button");
 
         loadButton.classList.add("disabled");
         errorAlert.classList.add("hidden");

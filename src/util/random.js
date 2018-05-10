@@ -10,8 +10,8 @@ export function randomInt(maxInt) {
 
 /**
  * @template T
- * @param {!Array.<T>} oldArray
- * @return {!Array.<T>}
+ * @param {!Array<T>} oldArray
+ * @return {!Array<T>}
  */
 export function shuffle(oldArray) {
     const newArray = [];

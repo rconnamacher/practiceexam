@@ -11,7 +11,7 @@ export class Question extends Model {
 
         /** @type {!string} */          this.question;
         /** @type {!string} */          this.answer;
-        /** @type {!Array.<!string>} */ this.incorrectAnswers;
+        /** @type {!Array<!string>} */ this.incorrectAnswers;
         /** @type {!string} */          this.notes;
     }
 }

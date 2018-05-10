@@ -23,8 +23,8 @@ export class HomePageView extends View {
     }
 
     didRefresh() {
-        const numQuestionInput = this.querySelector("input.num-questions");
-        const takeTestButton = this.querySelector("a.button-take-test");
+        const numQuestionInput = this.requireSelector("input.num-questions");
+        const takeTestButton = this.requireSelector("a.button-take-test");
         numQuestionInput.addEventListener("input", () => {
             takeTestButton.href = `#taketest/${numQuestionInput.value}`;
         });

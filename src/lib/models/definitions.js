@@ -10,7 +10,7 @@ import {FIELDS_PROPERTY} from "./Model.js";
 
 /**
  * @param {Constructor} constructor
- * @param {Object.<string,FieldDefinition>} fields
+ * @param {Object<string,FieldDefinition>} fields
  */
 function setFields(constructor, fields) {
     var schema = _createFieldsProperty(constructor);
@@ -43,7 +43,7 @@ function _createFieldsProperty(constructor) {
  * and to add the (a)lends annotation to the 'properties' object provided here.
  *
  * @param {Constructor} constructor
- * @param {Object.<string,Array.<string|FieldDefinition>>} properties
+ * @param {Object<string,Array<string|FieldDefinition>>} properties
  */
 export function properties(constructor, properties) {
     if ( goog.DEBUG && !(constructor.prototype instanceof Model ) ) {

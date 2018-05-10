@@ -9,7 +9,7 @@ export class View {
         this.rendered = false;
 
         /** @private
-         * @type {!Array.<!View>} */
+         * @type {!Array<!View>} */
         this._subviews = [];
 
         /** @type {!string} */
@@ -58,10 +58,21 @@ export class View {
         }
     }
 
+    /** @returns {?Element} */
     querySelector(query) {
         return this.domElement.querySelector(query);
     }
 
+    /** @returns {!Element} */
+    requireSelector(query) {
+        const element = this.domElement.querySelector(query);
+        if (!element) {
+            throw new Error(`Required selector ${query} not found`);
+        }
+        return element;
+    }
+
+    /** @returns {!NodeList<!Element>} */
     querySelectorAll(query) {
         return this.domElement.querySelectorAll(query);
     }

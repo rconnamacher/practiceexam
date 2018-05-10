@@ -17,7 +17,7 @@ app_version=$(node -p -e "require('./package.json').version")
 app_license="Practice Test ${app_version}, (c) 2018 Richard Connamacher. All Rights Reserved."
 
 
-while getopts "cdt6" opt; do
+while getopts "cd6e" opt; do
     case $opt in
         c)
             echo "Running Code Checks Only"
@@ -30,13 +30,13 @@ while getopts "cdt6" opt; do
             debug=true
             environment="dev"
             ;;
-        t)
-            echo "Using New Type Inference"
-            flags="$flags --new_type_inf"
-            ;;
         6)
-            echo "Outputing ES6"
+            echo "Outputting ES6"
             output_language="ECMASCRIPT6_STRICT"
+            ;;
+        e)
+            echo "Outputting ECMAScript without transpilation"
+            output_language="NO_TRANSPILE"
     esac
 done
 
@@ -71,6 +71,7 @@ buildLocale () {
             --entry_point=${staging_dir}/main.js \
             --dependency_mode=STRICT \
             --language_out=${output_language} \
+            --new_type_inf \
             --use_types_for_optimization=false \
             --rewrite_polyfills=false \
             --compilation_level=ADVANCED_OPTIMIZATIONS \
@@ -96,7 +97,7 @@ buildLocale () {
     echo "Executing $command"
     eval $command
 
-    lessc --compress src/style/main.less docs/css/style.css
+    node_modules/.bin/lessc --compress src/style/main.less docs/css/style.css
     gzip -9 -f --keep docs/js/${output_filename}
     gzip -9 -f --keep docs/css/style.css
 }

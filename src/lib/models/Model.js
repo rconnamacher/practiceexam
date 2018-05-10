@@ -1,6 +1,7 @@
 
 import {Serializable} from "./Serializable.js";
 
+/** @const {!symbol} */
 export const FIELDS_PROPERTY = Symbol("fields");
 
 /**
