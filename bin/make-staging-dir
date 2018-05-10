@@ -29,7 +29,7 @@ try {
     process.exit();
 }
 
-const converter = new DirectoryConverter(source_dir, require("./es6-module-options.js"));
+const converter = new DirectoryConverter(require("./es6-module-options.js"));
 for (let env of environments) {
     for (let locale of locales) {
         converter.convertDirectory(`${dest_dir}/${locale}/${env}`, {

@@ -6,7 +6,6 @@ const es6ModuleMiddleware = require("es6-module-server/expressMiddleware.js");
 const app = express();
 
 app.use("/src", es6ModuleMiddleware(
-    "src",
     require("./es6-module-options.js")
 ));
 

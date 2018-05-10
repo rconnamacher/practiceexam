@@ -3,11 +3,11 @@
     "version": "0.0.3",
     "private": true,
     "devDependencies": {
-        "google-closure-compiler": "^20180204.0.0",
-        "google-closure-library": "^20180204.0.0",
-        "express": "^4",
-        "es6-module-server": "https://github.com/rconnamacher/es6-module-server.git",
-        "less": "^3.0.1"
+        "es6-module-server": "git+https://github.com/rconnamacher/es6-module-server.git",
+        "express": "^4.16.3",
+        "google-closure-compiler": "^20180402.0.0",
+        "google-closure-library": "^20180402.0.0",
+        "less": "^3.0.4"
     },
     "scripts": {
         "start": "node bin/dev-server.js",

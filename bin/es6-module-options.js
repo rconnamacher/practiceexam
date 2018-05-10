@@ -1,6 +1,8 @@
 "use strict";
 
 module.exports = {
+    baseDir: "src",
+
     variables: {
         // How to load from URLs. below means "locale" query parameter in the
         // original HTML URL that loaded this, with the default "en"
