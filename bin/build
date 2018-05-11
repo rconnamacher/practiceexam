@@ -8,6 +8,9 @@
 debug=false
 compile=true
 
+args=${@:OPTIND+1}
+locales=(${args:-en-us es})
+
 # Abort on error
 set -e
 
@@ -71,6 +74,7 @@ buildLocale () {
             --entry_point=${staging_dir}/main.js \
             --dependency_mode=STRICT \
             --language_out=${output_language} \
+            --charset=UTF-8 \
             --new_type_inf \
             --use_types_for_optimization=false \
             --rewrite_polyfills=false \
@@ -94,6 +98,8 @@ buildLocale () {
 
     command=`echo "$command" | sed "s:  *: :g"`
 
+    echo ""
+    echo "Building locale $locale"
     echo "Executing $command"
     eval $command
 
@@ -102,4 +108,7 @@ buildLocale () {
     gzip -9 -f --keep docs/css/style.css
 }
 
-buildLocale en-us
+for locale in "${locales[@]}"
+do
+   buildLocale "$locale"
+done

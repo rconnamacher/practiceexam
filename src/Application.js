@@ -9,6 +9,7 @@ import {Question} from "./models/Question.js";
 import {View} from "./views/View.js";
 import {shuffle} from "./util/random.js";
 import {defaultSave} from "localized/defaultSave.js";
+import {strings} from "localized/general.js";
 
 export class Application extends View {
     constructor() {
@@ -67,7 +68,7 @@ export class Application extends View {
         let view = new ViewClass(model);
         view.display(this.domElement);
         this.currentView = view;
-        document.title = view.title || "Test Taker";
+        document.title = view.title || strings.default_title;
 
         return view;
     }
