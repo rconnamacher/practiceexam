@@ -8,7 +8,7 @@ edittest.save_button = "Guardar archivo";
 edittest.save_button_short = "Guardar";
 edittest.load_button = "Abrir archivo";
 edittest.load_button_short = "Abrir";
-edittest.done_button = "Hecho";
+edittest.done_button = "Completar";
 
 edittest.question_header = "Pregunta";
 edittest.question_header_inline = "Pregunta: ";

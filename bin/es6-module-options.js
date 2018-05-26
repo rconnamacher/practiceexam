@@ -8,7 +8,7 @@ module.exports = {
         // original HTML URL that loaded this, with the default "en"
         "locale": {
             type: "query",
-            name: "lang",
+            name: "locale",
             default: "en-us"
         },
         "environment": {

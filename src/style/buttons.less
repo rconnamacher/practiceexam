@@ -12,14 +12,14 @@ a.button {
     font-size: 16px;
     line-height: 16px;
     border-radius: 3px;
-}
+    position: relative;
 
-a.button:not(.disabled):hover {
-    background: #000;
-    border-color: #000;
-    color: #fff;
+    &:not(.disabled):hover {
+        background: #000;
+        border-color: #000;
+        color: #fff;
+    }
 }
-
 
 a.button.cancel-button {
     color: inherit;
@@ -32,7 +32,7 @@ a.button.cancel-button:hover {
     background: #fff;
 }
 
-a.action {
+a.action, div.action {
     font-size: 16px;
     line-height: 16px;
     padding: 5px 10px;
@@ -42,6 +42,38 @@ a.action {
     color: #333;
     background: #eee;
     text-align: center;
+
+    &:not(.disabled):hover {
+        background: #fff;
+        color: #000;
+        border-color: #aaa;
+    }
+
+    &.select {
+        padding-right: 20px;
+
+        &::after {
+            content: "▼";
+            color: #999;
+            font-size: 10px;
+            position: absolute;
+            right: 6px;
+            top: 4px;
+            bottom: 4px;
+            padding-top: 4px;
+            padding-left: 6px;
+        }
+
+        select {
+            opacity: 0;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+    }
 }
 
 a.action[title]::before {
@@ -55,12 +87,6 @@ a.action[title]::before {
     }
 }
 
-
-a.action:not(.disabled):hover {
-    background: #fff;
-    color: #000;
-    border-color: #aaa;
-}
 
 a.action.disabled, a.button.disabled {
     cursor: default;

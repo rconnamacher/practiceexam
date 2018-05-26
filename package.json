@@ -1,11 +1,11 @@
 {
     "name": "practiceexam",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "private": true,
     "devDependencies": {
         "es6-module-server": "git+https://github.com/rconnamacher/es6-module-server.git",
         "express": "^4.16.3",
-        "google-closure-compiler": "^20180402.0.0",
+        "google-closure-compiler": "^20180506.0.0",
         "google-closure-library": "^20180402.0.0",
         "less": "^3.0.4"
     },
