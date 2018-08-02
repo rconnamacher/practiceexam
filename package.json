@@ -3,7 +3,7 @@
     "version": "0.0.5",
     "private": true,
     "devDependencies": {
-        "es6-module-server": "git+https://github.com/rconnamacher/es6-module-server.git",
+        "es6-module-server": "^0.2.0",
         "express": "^4.16.3",
         "google-closure-compiler": "^20180506.0.0",
         "google-closure-library": "^20180402.0.0",

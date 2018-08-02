@@ -63,12 +63,12 @@ buildLocale () {
     node_modules/google-closure-compiler/compiler.jar \
             $flags \
             --module_resolution=browser \
-            --js_module_root='${staging_dir}' \
             --hide_warnings_for=google-closure-library \
             --hide_warnings_for="synthetic:" \
             --hide_warnings_for="localized" \
             --externs=src/externs/web-platform.js \
             --js='node_modules/google-closure-library/**.js' \
+            --js='node_modules/sample-es6-library/**.js' \
             --hide_warnings_for="${staging_dir}/localized/" \
             --js='${staging_dir}/**.js' \
             --entry_point=${staging_dir}/main.js \
